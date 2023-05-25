@@ -11,8 +11,8 @@ Por conta das condições mencionadas, os organizadores querem saber se é poss�
 Usando satisfatibilidade da lógica proposicional, você deve criar um programa que, dados como entrada o número de cursos k, o número de slots m e o conjunto P de minicursos com inscrições em comum, determine se é possível agendar m horários diferentes para ofertar os k minicursos de forma que minicursos com participantes em comum não sejam ofertados no mesmo horário. Caso seja possível, seu programa também deve dizer o slot de tempo que cada curso deve ser ofertado.
 
 Veja um exemplo de entrada e de saída a seguir. As primeiras linhas representam a identificação e nome de cada minicurso. Por exemplo, o minicurso de HTML é identificado pelo número 1. Depois temos o número de slots que é 3. Em seguida, os pares de números representam os cursos que possuem alunos em comum. Por exemplo, a linha com 1 2 representa que os minicursos HTML e PHP têm participantes em comum inscritos. Na saída, temos o horário em que cada curso foi definido. Por exemplo, o curso 2 ficou definido no terceiro slot. Seu programa deve funcionar para qualquer entrada que tenha essas informações.
-Entrada:
-# Minicursos:<br>
+# Entrada:
+Minicursos:<br>
 1 HTML  <br>
 2 PHP   <br>
 3 MySQL   <br>
@@ -30,6 +30,7 @@ Pares de minicursos com inscrições em comum:  <br>
 3 s1    <br>
 4 s2    <br>
 
+# Restrições
 Use variáveis atômicas da forma x_c,s para representar que o minicurso é ofertado no slot s. Por exemplo, a cláusula ¬(x_1,1 ∧ x_2,1) representa que os cursos 1 e 2 não podem ser realizados juntos no primeiro slot. Dessa forma, você vai construir uma fórmula da lógica proposicional que representa as restrições do problema e, em seguida, vai verificar se essa fórmula é satisfatível. Se a fórmula for satisfatível, a definição dos horários dos minicursos deve ser extraída de uma valoração que deixa a fórmula verdadeira. Veja que, a partir de uma entrada, temos que construir uma fórmula da lógica proposicional que é satisfatível se e somente se for possível usar m slots para ofertar os minicursos respeitando as inscrições em comum. Portanto, se a fórmula for insatisfatível, então não é possível usar apenas m slots. Além disso, se a fórmula for satisfatível, então a valoração que satisfaz a fórmula deve ter as informações necessárias para definir os slots dos minicursos. Você deve construir sua fórmula a partir das restrições descritas em linguagem natural a seguir:
 
 Lógica para Computação Projeto
