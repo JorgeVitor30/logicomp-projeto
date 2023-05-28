@@ -173,3 +173,21 @@ def negation_normal_form(formula):
         return formula
     
     return formula
+
+def distributive(formula):
+    if (isinstance(formula, And)):
+        return And(distributive(formula.left), distributive(formula.right))
+    
+    if (isinstance(formula, Or)):
+        left = distributive(formula.left)
+        right = distributive(formula.right)
+        if (isinstance(left, And)):
+            return And(distributive(Or(left.left, right)), distributive(Or(left.right, right)))
+        
+        if (isinstance(right, And)):
+            return And(distributive(Or(left, right.left)), distributive(Or(left, right.right)))
+        
+    if (isinstance(formula, Atom) or (isinstance(formula, Not) and isinstance(formula.inner, Atom))):
+        return formula
+    
+    return formula
