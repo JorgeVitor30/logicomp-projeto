@@ -2,8 +2,8 @@
 1 HTML  
 2 PHP   
 3 MySQL  
-4 Swift
-# Slots: 3  
+4 Swift  
+# Slots: 3 
 # Pares de minicursos com inscrições em comum:
 1 2 
 2 3 

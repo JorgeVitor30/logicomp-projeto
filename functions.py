@@ -204,7 +204,7 @@ def cnf(formula):
     return cnf_formula
 
 
-def return_all_courses():
+def get_all_courses():
 
     with open("input.txt", "r") as arquivo:
         lines = arquivo.readlines()
@@ -226,3 +226,22 @@ def return_all_courses():
         minicourses[x+1] = list_courses[x]
 
     return minicourses
+
+def get_count_slots():
+    with open("input.txt", "r") as arquivo:
+        lines = arquivo.readlines()
+
+    list_line = []
+        
+    for line in lines:
+        if line.startswith('# Minicursos'):
+            continue
+
+        list_line.append(line.split(' ')[2])
+        
+        if 'Slots' in line:
+            num = line.split()
+            slot = num[2]
+
+    return slot
+    
