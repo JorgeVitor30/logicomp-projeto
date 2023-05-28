@@ -191,3 +191,10 @@ def distributive(formula):
         return formula
     
     return formula
+
+def cnf(formula):
+    implication_free_formula = implication_free(formula)
+    nnf_formula = negation_normal_form(implication_free_formula)
+    cnf_formula = distributive(nnf_formula)
+
+    return cnf_formula
