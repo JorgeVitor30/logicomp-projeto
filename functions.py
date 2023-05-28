@@ -116,7 +116,7 @@ def is_decomposable_negation_normal_form(formula):
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
 
 
-def turn_common_inscriptions_minicourses_to_propositional_logic(cx, cy, slots):
+def turn_common_inscriptions_pair_minicourses_to_propositional_logic(cx, cy, slots):
     firstCourseInFirstSlot = Atom(f"x_{cx}_1")
     secondCourseInFirstSlot = Atom(f"x_{cy}_1")
     formula = Not(And(firstCourseInFirstSlot, secondCourseInFirstSlot))
