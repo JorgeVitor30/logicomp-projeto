@@ -127,6 +127,7 @@ def turn_common_inscriptions_pair_minicourses_to_propositional_logic(cx, cy, slo
 
     return formula
 
+
 def implication_free(formula):
     if (isinstance(formula, Implies) or isinstance(formula, Or) or isinstance(formula, And)):
         left = implication_free(formula.left)
@@ -148,6 +149,7 @@ def implication_free(formula):
     if (isinstance(formula, Atom)):
         return formula
     return formula
+
 
 def negation_normal_form(formula):    
     if (isinstance(formula, Not) and isinstance(formula.inner, Not)):
@@ -174,6 +176,7 @@ def negation_normal_form(formula):
     
     return formula
 
+
 def distributive(formula):
     if (isinstance(formula, And)):
         return And(distributive(formula.left), distributive(formula.right))
@@ -192,9 +195,34 @@ def distributive(formula):
     
     return formula
 
+
 def cnf(formula):
     implication_free_formula = implication_free(formula)
     nnf_formula = negation_normal_form(implication_free_formula)
     cnf_formula = distributive(nnf_formula)
 
     return cnf_formula
+
+
+def return_all_courses():
+
+    with open("input.txt", "r") as arquivo:
+        lines = arquivo.readlines()
+
+
+    list_courses = []
+    for line in lines:
+        if line.startswith('# Minicursos'):
+            continue
+        if line.startswith('#'):
+            break
+        list_courses.append(line.split(' ')[1])
+
+    qtd_courses = len(list_courses)
+
+    minicourses = {}
+
+    for x in range(0,qtd_courses):
+        minicourses[x+1] = list_courses[x]
+
+    return minicourses
