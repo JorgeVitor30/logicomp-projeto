@@ -127,3 +127,19 @@ def turn_common_inscriptions_pair_minicourses_to_propositional_logic(cx, cy, slo
 
     return formula
 
+def implication_free(formula):
+    if (isinstance(formula, Implies) or isinstance(formula, Or) or isinstance(formula, And)):
+        left = implication_free(formula.left)
+        right = implication_free(formula.right)
+        if (isinstance(formula, Implies)):
+            return (Or(Not(left), right))
+        if (isinstance(formula, Or)):
+            return Or(left, right)
+        if (isinstance(formula, And)):
+            return And(left, right)
+    if (isinstance(formula, Not)):
+        inner = implication_free(formula.inner)
+        return Not(inner)
+    if (isinstance(formula, Atom)):
+        return formula
+    return formula
