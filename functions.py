@@ -114,3 +114,16 @@ def is_decomposable_negation_normal_form(formula):
     """Returns True if formula is in decomposable negation normal form.
     Returns False, otherwise."""
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
+
+
+def turn_common_inscriptions_minicourses_to_propositional_logic(cx, cy, slots):
+    firstCourseInFirstSlot = Atom(f"x_{cx}_1")
+    secondCourseInFirstSlot = Atom(f"x_{cy}_1")
+    formula = Not(And(firstCourseInFirstSlot, secondCourseInFirstSlot))
+
+    for slot in range(2, slots+1):
+        formula = And(formula, Not(And(Atom(f"x_{cx}_{slot}"), Atom(f"x_{cy}_{slot}"))))
+    
+
+    return formula
+
