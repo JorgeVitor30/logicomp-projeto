@@ -131,15 +131,45 @@ def implication_free(formula):
     if (isinstance(formula, Implies) or isinstance(formula, Or) or isinstance(formula, And)):
         left = implication_free(formula.left)
         right = implication_free(formula.right)
+        
         if (isinstance(formula, Implies)):
             return (Or(Not(left), right))
+        
         if (isinstance(formula, Or)):
             return Or(left, right)
+        
         if (isinstance(formula, And)):
             return And(left, right)
+        
     if (isinstance(formula, Not)):
         inner = implication_free(formula.inner)
         return Not(inner)
+    
     if (isinstance(formula, Atom)):
         return formula
+    return formula
+
+def negation_normal_form(formula):    
+    if (isinstance(formula, Not) and isinstance(formula.inner, Not)):
+        removed_double_negation_formula = formula.inner.inner
+        return negation_normal_form(removed_double_negation_formula)
+    
+    if (isinstance(formula, Or)):
+            return Or(negation_normal_form(formula.left), negation_normal_form(formula.right))
+        
+    if (isinstance(formula, And)):
+            return And(negation_normal_form(formula.left), negation_normal_form(formula.right))
+        
+    if (isinstance(formula, Not)):
+        inner_formula = formula.inner
+
+        if (isinstance(inner_formula, Or)):
+                return And(negation_normal_form(Not((inner_formula.left))), negation_normal_form(Not(inner_formula.right)))
+            
+        if (isinstance(inner_formula, And)):
+                return Or(negation_normal_form(Not(inner_formula.left)), negation_normal_form(Not(inner_formula.right)))
+    
+    if (isinstance(formula, Atom) or (isinstance(formula, Not) and isinstance(formula.inner, Atom))):
+        return formula
+    
     return formula
