@@ -206,8 +206,8 @@ def cnf(formula):
 
 def get_all_courses():
 
-    with open("input.txt", "r") as arquivo:
-        lines = arquivo.readlines()
+    with open("input.txt", "r") as archive:
+        lines = archive.readlines()
 
 
     list_courses = []
@@ -227,9 +227,10 @@ def get_all_courses():
 
     return minicourses
 
+
 def get_count_slots():
-    with open("input.txt", "r") as arquivo:
-        lines = arquivo.readlines()
+    with open("input.txt", "r") as archive:
+        lines = archive.readlines()
 
     list_line = []
         
@@ -245,3 +246,22 @@ def get_count_slots():
 
     return slot
     
+
+def get_time_pairs():
+    with open("input.txt", "r") as archive:
+        lines = archive.readlines()
+
+    list_courses = []
+    
+    found_pairs = False
+
+    for line in lines:
+        if found_pairs:
+            minicourse1, minicourse2 = line.split(' ')[:2]
+            
+            list_courses.append((int(minicourse1), int(minicourse2)))
+            
+        elif line.startswith('# Pares de minicursos com inscrições em comum:'):
+            found_pairs = True
+   
+    return list_courses
