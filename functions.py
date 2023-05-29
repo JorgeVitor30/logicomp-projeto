@@ -203,11 +203,16 @@ def cnf(formula):
 
     return cnf_formula
 
+def open_archive():
+    with open("input.txt", "r") as archive:
+        lines = archive.readlines()
+    return lines
+
+
 
 def get_all_courses():
 
-    with open("input.txt", "r") as archive:
-        lines = archive.readlines()
+    lines = open_archive()
 
 
     list_courses = []
@@ -229,8 +234,7 @@ def get_all_courses():
 
 
 def get_count_slots():
-    with open("input.txt", "r") as archive:
-        lines = archive.readlines()
+    lines = open_archive()
 
     list_line = []
         
@@ -248,8 +252,7 @@ def get_count_slots():
     
 
 def get_time_pairs():
-    with open("input.txt", "r") as archive:
-        lines = archive.readlines()
+    lines = open_archive()
 
     list_courses = []
     
