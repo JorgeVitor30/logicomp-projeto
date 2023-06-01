@@ -3,6 +3,7 @@ do some computation on its syntactic structure. """
 
 
 from formula import *
+from pysat.formula import IDPool
 
 
 def length(formula):
@@ -145,7 +146,7 @@ def max_in_one_slot(cx, slots):
 
             if x == 1 and y == 2:
                 formula = not_in_two_slots
-                
+
             else:
                 formula = And(formula, Not(And(Atom(f"x_{cx}_{x}"),Atom(f"x_{cx}_{y}"))))
 
@@ -231,6 +232,31 @@ def open_archive():
         lines = archive.readlines()
     return lines
 
+def parse_cnf_to_clause_form(formula):
+    string_formula = str(formula)
+    string_formula_without_parentesis = string_formula.replace("(", "").replace(")", "")
+    clauses =  string_formula_without_parentesis.split('\u2227')
+    for x in range(0, len(clauses)):
+        clauses[x] = clauses[x].strip().split(' \u2228 ')
+
+    return clauses
+
+
+def parse_clauses_to_id(clauses):
+    var_pool = IDPool()
+    id_list = []
+
+    for x in range(0, len(clauses)):
+        actualClause = []
+        for y in range (0, len(clauses[x])):
+            if (clauses[x][y][0] == "\u00ac"):
+                actualClause.append(int(var_pool.id(clauses[x][y].replace("\u00ac", "")) * (-1)))
+            else:
+                actualClause.append(int(var_pool.id(clauses[x][y])))
+        id_list.append(actualClause)
+
+    return id_list
+            
 
 
 def get_all_courses():
