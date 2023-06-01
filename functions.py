@@ -127,6 +127,23 @@ def turn_common_inscriptions_pair_minicourses_to_propositional_logic(cx, cy, slo
 
     return formula
 
+
+def at_least_in_one_slot(cx, slots):
+    firstCourseInFirstSlot = Atom(f"x_{cx}_1")
+    formula = firstCourseInFirstSlot
+
+    for slot in range(2, slots+1):
+        formula = Or(formula, Atom(f"x_{cx}_{slot}"))
+
+    return formula
+
+def max_in_one_slot(cx, slots):
+
+    for x in range(1, slots + 1):
+        for y in range(x + 1, slots + 1):
+            not_in_two_slots = Not(And(Atom(f"x_{cx}_{x}"),Atom(f"x_{cx}_{y}")))
+            print(not_in_two_slots)
+
 def implication_free(formula):
     if (isinstance(formula, Implies) or isinstance(formula, Or) or isinstance(formula, And)):
         left = implication_free(formula.left)
