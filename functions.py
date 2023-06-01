@@ -166,6 +166,7 @@ def implication_free(formula):
         return formula
     return formula
 
+
 def negation_normal_form(formula):    
     if (isinstance(formula, Not) and isinstance(formula.inner, Not)):
         removed_double_negation_formula = formula.inner.inner
@@ -191,6 +192,7 @@ def negation_normal_form(formula):
     
     return formula
 
+
 def distributive(formula):
     if (isinstance(formula, And)):
         return And(distributive(formula.left), distributive(formula.right))
@@ -209,9 +211,76 @@ def distributive(formula):
     
     return formula
 
+
 def cnf(formula):
     implication_free_formula = implication_free(formula)
     nnf_formula = negation_normal_form(implication_free_formula)
     cnf_formula = distributive(nnf_formula)
 
     return cnf_formula
+
+def open_archive():
+    with open("input.txt", "r") as archive:
+        lines = archive.readlines()
+    return lines
+
+
+
+def get_all_courses():
+
+    lines = open_archive()
+
+
+    list_courses = []
+    for line in lines:
+        if line.startswith('# Minicursos'):
+            continue
+        if line.startswith('#'):
+            break
+        list_courses.append(line.split(' ')[1])
+
+    qtd_courses = len(list_courses)
+
+    minicourses = {}
+
+    for x in range(0,qtd_courses):
+        minicourses[x+1] = list_courses[x]
+
+    return minicourses
+
+
+def get_count_slots():
+    lines = open_archive()
+
+    list_line = []
+        
+    for line in lines:
+        if line.startswith('# Minicursos'):
+            continue
+
+        list_line.append(line.split(' ')[2])
+        
+        if 'Slots' in line:
+            num = line.split()
+            slot = num[2]
+
+    return slot
+    
+
+def get_time_pairs():
+    lines = open_archive()
+
+    list_courses = []
+    
+    found_pairs = False
+
+    for line in lines:
+        if found_pairs:
+            minicourse1, minicourse2 = line.split(' ')[:2]
+            
+            list_courses.append((int(minicourse1), int(minicourse2)))
+            
+        elif line.startswith('# Pares de minicursos com inscrições em comum:'):
+            found_pairs = True
+   
+    return list_courses
