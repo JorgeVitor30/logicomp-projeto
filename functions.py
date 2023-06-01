@@ -142,7 +142,14 @@ def max_in_one_slot(cx, slots):
     for x in range(1, slots + 1):
         for y in range(x + 1, slots + 1):
             not_in_two_slots = Not(And(Atom(f"x_{cx}_{x}"),Atom(f"x_{cx}_{y}")))
-            print(not_in_two_slots)
+
+            if x == 1 and y == 2:
+                formula = not_in_two_slots
+                
+            else:
+                formula = And(formula, Not(And(Atom(f"x_{cx}_{x}"),Atom(f"x_{cx}_{y}"))))
+
+    return formula
 
 def implication_free(formula):
     if (isinstance(formula, Implies) or isinstance(formula, Or) or isinstance(formula, And)):
