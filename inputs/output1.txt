@@ -1,0 +1,4 @@
+O curso HTML ficará no slot de horário 1
+O curso PHP ficará no slot de horário 3
+O curso MySQL ficará no slot de horário 2
+O curso Swift ficará no slot de horário 1

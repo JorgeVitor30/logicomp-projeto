@@ -1,0 +1,13 @@
+# Minicursos:
+1 Java
+2 Cobol
+3 Golang
+4 React
+5 Angular
+# Slots: 3
+# Pares de minicursos com inscrições em comum:
+1 2
+1 3 
+2 3 
+3 4
+4 5

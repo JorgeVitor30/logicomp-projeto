@@ -1,0 +1,10 @@
+O curso Java
+ ficará no slot de horário 3
+O curso Cobol
+ ficará no slot de horário 2
+O curso Golang
+ ficará no slot de horário 1
+O curso React
+ ficará no slot de horário 2
+O curso Angular
+ ficará no slot de horário 1
