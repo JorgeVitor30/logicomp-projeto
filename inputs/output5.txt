@@ -1,0 +1,11 @@
+O curso Javascript ficará no slot de horário 2
+
+O curso Python ficará no slot de horário 1
+
+O curso Ruby ficará no slot de horário 3
+
+O curso Flutter ficará no slot de horário 3
+
+O curso MySQL ficará no slot de horário 2
+
+O curso Postgres ficará no slot de horário 1

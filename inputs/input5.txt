@@ -1,0 +1,17 @@
+# Minicursos:
+1 Javascript
+2 Python
+3 Ruby 
+4 Flutter 
+5 MySQL
+6 Postgres
+# Slots: 3
+# Pares de minicursos com inscrições em comum:
+1 2 
+1 3 
+2 4
+3 5
+3 6 
+4 5
+4 6
+5 6 
